@@ -3,7 +3,11 @@ const {route} = require('express/lib/application')
 const routes = express.Router()
 
 routes.get('', (req,resp) => {
-    resp.render
+    resp.render('index')
+})
+
+routes.get('/gallery', (req,resp) => {
+    resp.render('gallery')
 })
 
 
