@@ -8,8 +8,8 @@
 <body>
     <nav class="navbar border-black border-2 border-bottom navbar-expand-lg py-3">
         <div class="container">
-            <img src="static/images/logo.png" alt="Bootstrap" width="30" height="24">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <img src="{{data.brandUrl}}" alt="Bootstrap" width="30" height="24">
+            <a class="navbar-brand" href="#">{{data.brandName}}</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,26 +18,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-primary">
+                {{#each data.links}}
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href={{this.url}}>{{this.label}}</a>
                 </li>
-
-                <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-                </li>
-
-                <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+                {{/each}}
             </ul>
 
             </div>
         </div>
     </nav>
-    <h3>omkksdjjdckj</h3>
-
 </body>
 </html>
