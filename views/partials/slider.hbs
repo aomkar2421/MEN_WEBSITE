@@ -2,14 +2,14 @@
   
   <div class="carousel-indicators">
     {{#each slider }}
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={{@index}} class="active bg-black" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={{@index}} class="active bg-black" aria-current="true"></button>
     {{/each}}
   </div>
 
   <div class="carousel-inner">
 
     {{#each slider}}
-    <div class="carousel-item active">
+    <div class="carousel-item {{#if @first}}active{{/if}}">
       <img src={{this.imgUrl}} class="d-block w-100 s-img" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{this.title}}</h5>

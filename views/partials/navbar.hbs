@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar border-black border-2 border-bottom navbar-expand-lg py-3">
-        <div class="container">
+    <nav class="navbar border-black border-2 border-bottom navbar-expand-lg py-3 bg-black text-white" style="position: relative; z-index: 5;">
+        <div class="container text-white">
             <img src="{{data.brandUrl}}" alt="Bootstrap" width="30" height="24">
             <a class="navbar-brand" href="#">{{data.brandName}}</a>
             
@@ -20,7 +20,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-primary">
                 {{#each data.links}}
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href={{this.url}}>{{this.label}}</a>
+                <a class="nav-link active text-white" aria-current="page" href={{this.url}}>{{this.label}}</a>
                 </li>
                 {{/each}}
             </ul>

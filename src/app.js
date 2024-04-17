@@ -2,13 +2,19 @@ const express = require('express')
 const routes = require('./routes/main')
 const hbs = require('hbs')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const Detail = require('./models/Detail')
 const Slider = require('./models/Slider')
+const Service = require('./models/Service')
 const app = express()
 
 //routes and static files
+app.use(bodyParser.urlencoded({
+    extended : true
+}))
 app.use('',routes)
 app.use('/static',express.static('public'))
+
 
 //view engine
 app.set("view engine" , 'hbs')
@@ -65,6 +71,51 @@ mongoose.connect("mongodb://127.0.0.1:27017/servicehub")
 //         title : 'Service 4',
 //         subtitle : 'Service 4 Description',
 //         imgUrl : 'static/images/slider4.jpg'
+//     }
+// ])
+
+// Service.create([
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
+//     },
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
+//     },
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
+//     },
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
+//     },
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
+//     },
+//     {
+//         icon : 'fas fa-user-graduate',
+//         title : 'Best Courses',
+//         description : 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates aliquam consequuntur dicta tenetur, consectetur recusandae?',
+//         linkText : 'Support',
+//         link : '#',
 //     }
 // ])
 
