@@ -1,9 +1,15 @@
 *{
     padding: 0;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .s-img{
-    height:500px !important;
+    height:400px !important;
     object-fit: cover;
+}
+
+.service-txt{
+    font-size: 100px;
 }
