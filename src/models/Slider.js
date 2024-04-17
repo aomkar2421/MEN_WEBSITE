@@ -6,5 +6,4 @@ const Slider = mongoose.Schema({
     imgUrl : String,
     class : String
 })
-
 module.exports = mongoose.model('slider',Slider)
