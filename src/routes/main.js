@@ -24,6 +24,10 @@ routes.get('/gallery', async (req,resp) => {
     })
 })
 
+routes.get('/admin', async (req,resp) => {
+    resp.render('admin');
+})
+
 routes.post('/process-form',async (req,resp)=>{
     console.log("form submitted succesfully");
     console.log(req.body);
