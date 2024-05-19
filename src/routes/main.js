@@ -24,9 +24,26 @@ routes.get('/gallery', async (req,resp) => {
     })
 })
 
-routes.get('/admin', async (req,resp) => {
-    resp.render('admin');
+routes.get('/queries', async (req,resp) => {
+    let details =await Detail.findOne({ "_id":"661b7e629303ab08bdf2d12d" });
+    let contact =await Contact.find();
+    resp.render('admin',{
+        details: details,
+        contact : contact
+    });
 })
+
+routes.get('/admin', async (req,resp) => {
+    let details =await Detail.findOne({ "_id":"661b7e629303ab08bdf2d12d" });
+    let slider =await Slider.find();
+    let service =await Service.find();
+    resp.render('admin',{
+        details: details,
+        slider : slider,
+        service : service,
+    });
+})
+
 
 routes.post('/process-form',async (req,resp)=>{
     console.log("form submitted succesfully");
