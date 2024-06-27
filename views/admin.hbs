@@ -10,10 +10,46 @@
     <link rel="shortcut icon" href="static/images/logo.png" type="image/x-icon">
 </head>
 <body>
+
     {{>navbar data=details}}
 
-    
-    ADMIN
+    <div>
+
+    </div>
+
+    <div class="container " >
+        <h2>Slider</h2>  
+        {{!-- <a href="/add_slider/{{this._id}}" class="btn btn-primary">Add</a> --}}
+        <div class="container d-flex flex-wrap justify-content-evenly">
+
+            {{#each slider}}
+            <div class="bg-light col-md-5 my-3 d-flex justify-content-between" >
+
+                <form action="/edit_slider/{{this._id}}" method="post">
+                    <input type="hidden" name="id" value="{{this._id}}">
+                    <input type="text" name="imgUrl" value="{{this.imgUrl}}">
+                    <input type="text" name="title" value="{{this.title}}">
+                    <input type="text" name="subtitle" value="{{this.subtitle}}">
+                    <input type="submit" value="Update" class="btn btn-primary">
+                    <a href="/delete_slider/{{this._id}}" class="btn btn-secondary">Delete</a>
+                </form>
+
+                {{!-- <div class="me-5">
+                    <a href="/delete_slider/{{this._id}}">Edit</a>
+                </div>              --}}
+
+            </div>
+            {{/each}}
+        </div>
+
+        <form action="/add_slider" method="post">
+            Image Url :- <input type="text" name="imgUrl">
+            Slider Title :- <input type="text" name="title" >
+            Slider Subtitle :- <input type="text" name="subtitle" >
+            <input type="submit" value="Add" class="btn btn-primary">
+        </form>
+
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

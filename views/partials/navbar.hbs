@@ -8,21 +8,49 @@
 <body>
     <nav class="navbar border-black border-2 border-bottom navbar-expand-lg py-2 bg-white">
         <div class="container">
-            <img src="{{data.brandUrl}}" alt="Bootstrap" width="30" height="24">
-            <a class="navbar-brand" href="#">{{data.brandName}}</a>
+            <img src='static/images/logo.png' alt="Bootstrap" width="30" height="24">
+            <a class="navbar-brand" href="/">ServiceHub</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                {{#each data.links}}
+            
+            {{!-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {{#each details.links}}
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href={{this.url}}>{{this.label}}</a>
                 </li>
                 {{/each}}
+            </ul> --}}
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/" >Home</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#services" >Services</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href='#about'>About Us</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href='#contact'>Contact Us</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href='/gallery'>Gallery</a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href='/admin'>Admin</a>
+                </li>
+
             </ul>
 
             </div>
