@@ -7,6 +7,8 @@ const Service = require("../models/Service");
 const Contact = require("../models/Contact");
 const Banner = require("../models/Banner");
 const exphbs = require("express-handlebars");
+const Location = require("../models/Location");
+
 
 // this is helper function for index.hbs for rendering banner (alternatively based on index)
 const hbs = exphbs.create({
@@ -17,19 +19,25 @@ const hbs = exphbs.create({
   },
 });
 
+
+// Home Page
 routes.get("/", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
   let slider = await Slider.find();
   let service = await Service.find();
   let banner = await Banner.find();
+  let location = await Location.find();
   resp.render("index", {
     details: details,
     slider: slider,
     service: service,
     banner: banner,
+    location : location
   });
 });
 
+
+// Gallery Page
 routes.get("/gallery", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
   resp.render("gallery", {
@@ -37,6 +45,8 @@ routes.get("/gallery", async (req, resp) => {
   });
 });
 
+
+// Query Page
 routes.get("/queries", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
   let contact = await Contact.find();
@@ -46,19 +56,25 @@ routes.get("/queries", async (req, resp) => {
   });
 });
 
+
+// Admin Page
 routes.get("/admin", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
   let slider = await Slider.find();
   let service = await Service.find();
   let banner = await Banner.find();
+  let location = await Location.find();
   resp.render("admin", {
     details: details,
     slider: slider,
     service: service,
     banner: banner,
+    location : location
   });
 });
 
+
+// Contact Us Form
 routes.post("/process-form", async (req, resp) => {
   console.log("form submitted succesfully");
   console.log(req.body);
@@ -74,6 +90,10 @@ routes.post("/process-form", async (req, resp) => {
   }
 });
 
+
+// ================= SLIDER UPDATION START ==================//
+
+// Edit Slider
 routes.post("/edit_slider/:id", async (req, resp) => {
   console.log("Entered In Method");
   console.log(req.body);
@@ -99,6 +119,7 @@ routes.post("/edit_slider/:id", async (req, resp) => {
 });
 
 
+//Delete Slider
 routes.get("/delete_slider/:id", async (req, res) => {
   console.log("Entered In Delete Method");
   console.log(req.body);
@@ -117,6 +138,7 @@ routes.get("/delete_slider/:id", async (req, res) => {
 });
 
 
+//Add Slider
 routes.post("/add_slider", async (req, resp) => {
   console.log("Entered In Add Method");
   console.log(req.body);
@@ -142,9 +164,244 @@ routes.post("/add_slider", async (req, resp) => {
   }
 
 });
+// ================= SLIDER UPDATION END ==================//
 
-// routes.get('editSlider', ()=>{
 
-// })
+
+// ================= SERVICE UPDATION START ==================//
+
+// Edit Service
+routes.post("/edit_service/:id", async (req, resp) => {
+  console.log("Entered In Method");
+  console.log(req.body);
+
+  const serviceId = req.params.id;
+  const { icon, title, description, linkText, link } = req.body;
+
+  console.log("Service ID:", serviceId);
+  console.log("Icon:", icon);
+  console.log("Title:", title);
+  console.log("description:", description);
+  console.log("linkText:", linkText);
+  console.log("link:", link);
+
+  try{
+    const data = await Service.updateOne( {_id : serviceId} , {$set : {icon : icon,  title : title, description : description, linkText : linkText, link : link} } )
+    console.log(data)
+    resp.redirect('/')
+  }catch(e){
+    console.log(e);
+    console.log("Error Occured");
+    resp.redirect("/");
+  }
+
+});
+
+
+//Delete Service
+routes.get("/delete_service/:id", async (req, res) => {
+  console.log("Entered In Delete Method");
+
+  const serviceId = req.params.id;
+  console.log("Service ID:", serviceId);
+  
+  console.log("body :- ",req.body);
+
+
+  try {
+    const data = await Service.deleteOne({ _id: serviceId });
+    console.log(data);
+    res.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    res.redirect("/");
+  }
+});
+
+
+//Add Service
+routes.post("/add_service", async (req, resp) => {
+  console.log("Entered In Add Method");
+  console.log(req.body);
+
+  const { icon, title, description, linkText, link } = req.body;
+
+  console.log("Icon:", icon);
+  console.log("Title:", title);
+  console.log("description:", description);
+  console.log("linkText:", linkText);
+  console.log("link:", link);
+
+  try {
+    const data = await Service.create({ icon : icon,  title : title, description : description, linkText : linkText, link : link });
+    console.log(data);
+    resp.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    resp.redirect("/");
+  }
+
+});
+// ================= SLIDER UPDATION END ==================//
+
+
+
+// ================= BANNER UPDATION START ==================//
+
+
+// Edit Banner
+routes.post("/edit_banner/:id", async (req, resp) => {
+  console.log("Entered In Method");
+  console.log(req.body);
+
+  const bannerId = req.params.id;
+  const { imgUrl, title, subtitle } = req.body;
+
+  console.log("Banner ID:", bannerId);
+  console.log("Image URL:", imgUrl);
+  console.log("Title:", title);
+  console.log("Subtitle:", subtitle);
+
+  try{
+    const data = await Banner.updateOne( {_id : bannerId} , {$set : {title : title, subtitle : subtitle, imgUrl : imgUrl} } )
+    console.log(data)
+    resp.redirect('/')
+  }catch(e){
+    console.log(e);
+    console.log("Error Occured");
+    resp.redirect("/");
+  }
+
+});
+
+
+//Delete Banner
+routes.get("/delete_banner/:id", async (req, res) => {
+  console.log("Entered In Delete Method");
+  console.log(req.body);
+
+  const bannerId = req.params.id;
+
+  try {
+    const data = await Banner.deleteOne({ _id: bannerId });
+    console.log(data);
+    res.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    res.redirect("/");
+  }
+});
+
+
+//Add Banner
+routes.post("/add_banner", async (req, resp) => {
+  console.log("Entered In Add Method");
+  console.log(req.body);
+
+  const { imgUrl, title, subtitle } = req.body;
+
+  console.log("Image URL:", imgUrl);
+  console.log("Title:", title);
+  console.log("Subtitle:", subtitle);
+
+  try {
+    const data = await Banner.create({
+      imgUrl: imgUrl,
+      title: title,
+      subtitle: subtitle
+    });
+    console.log(data);
+    resp.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    resp.redirect("/");
+  }
+
+});
+
+// ================= BANNER UPDATION END ==================//
+
+
+
+// ================= LOCATION UPDATION START ==================//
+
+
+// Edit Location
+routes.post("/edit_location/:id", async (req, resp) => {
+  console.log("Entered In Method");
+  console.log(req.body);
+
+  const locationId = req.params.id;
+  const { city, location, optional } = req.body;
+
+  console.log("location ID:", locationId);
+  console.log("City:", city);
+  console.log("location:", location);
+  console.log("optional:", optional);
+
+  try{
+    const data = await Location.updateOne( {_id : locationId} , {$set : {city : city, location : location, optional : optional} } )
+    console.log(data)
+    resp.redirect('/')
+  }catch(e){
+    console.log(e);
+    console.log("Error Occured");
+    resp.redirect("/");
+  }
+
+});
+
+
+//Delete Location
+routes.get("/delete_location/:id", async (req, res) => {
+  console.log("Entered In Delete Method");
+  console.log(req.body);
+
+  const locationId = req.params.id;
+
+  try {
+    const data = await Location.deleteOne({ _id: locationId });
+    console.log(data);
+    res.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    res.redirect("/");
+  }
+});
+
+
+//Add Banner
+routes.post("/add_location", async (req, resp) => {
+  console.log("Entered In Add Method");
+  console.log(req.body);
+
+  const locationId = req.params.id;
+  const { city, location, optional } = req.body;
+
+  console.log("location ID:", locationId);
+  console.log("City:", city);
+  console.log("location:", location);
+  console.log("optional:", optional);
+
+  try{
+    const data = await Location.create( {city : city, location : location, optional : optional} )
+    console.log(data);
+    resp.redirect('/');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    resp.redirect("/");
+  }
+
+});
+
+// ================= LOCATION UPDATION END ==================//
+
+
 
 module.exports = routes;

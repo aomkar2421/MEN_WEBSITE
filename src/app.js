@@ -7,6 +7,7 @@ const Detail = require('./models/Detail')
 const Slider = require('./models/Slider')
 const Service = require('./models/Service')
 const Banner = require('./models/Banner')
+const Location = require('./models/Location')
 const app = express()
 
 //routes and static files
@@ -143,6 +144,18 @@ mongoose.connect("mongodb://127.0.0.1:27017/servicehub")
 //     }
 // ])
 
+// Location.create([
+//     {
+//         city : 'Pune',
+//         location : 'Sinhgad Campus',
+//         optional : 'Newest Location'
+//     },
+//     {
+//         city : 'Pune',
+//         location : 'Sinhgad Campus',
+//         optional : 'Newest Location'
+//     }
+// ])
 
 app.listen(4500, () => {
     console.log("Server Started")
