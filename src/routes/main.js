@@ -8,6 +8,7 @@ const Contact = require("../models/Contact");
 const Banner = require("../models/Banner");
 const exphbs = require("express-handlebars");
 const Location = require("../models/Location");
+const Image = require("../models/Image");
 
 
 // this is helper function for index.hbs for rendering banner (alternatively based on index)
@@ -40,8 +41,12 @@ routes.get("/", async (req, resp) => {
 // Gallery Page
 routes.get("/gallery", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
+  let image = await Image.find({ tag: "gallery" });
+  let product = await Image.find({ tag: "products" });
   resp.render("gallery", {
     details: details,
+    image : image,
+    product : product
   });
 });
 
@@ -64,12 +69,14 @@ routes.get("/admin", async (req, resp) => {
   let service = await Service.find();
   let banner = await Banner.find();
   let location = await Location.find();
+  let image = await Image.find();
   resp.render("admin", {
     details: details,
     slider: slider,
     service: service,
     banner: banner,
-    location : location
+    location : location,
+    image : image
   });
 });
 
@@ -118,10 +125,10 @@ routes.get('/resolved_query/:id', async (req, res) => {
   try {
     const data = await Contact.deleteOne({ _id: queryId });
     console.log(`Query with ID ${queryId} resolved and deleted successfully`, data);
-    res.redirect("/"); // Redirect to the home page or any other page
+    res.redirect("/"); 
   } catch (e) {
     console.error("Error occurred while resolving query", e);
-    res.redirect("/queries"); // Handle the error by redirecting
+    res.redirect("/queries"); 
   }
 });
 
@@ -437,6 +444,86 @@ routes.post("/add_location", async (req, resp) => {
 });
 
 // ================= LOCATION UPDATION END ==================//
+
+
+
+// ================= IMAGE UPDATION START ==================//
+
+
+// Edit Image
+routes.post("/edit_image/:id", async (req, res) => {
+  console.log("Entered In Method");
+  console.log(req.body);
+
+  const imageId = req.params.id;
+  const { image, tag, description } = req.body;
+
+  console.log("Image ID:", imageId);
+  console.log("image:", image);
+  console.log("tag:", tag);
+  console.log("description:", description);
+
+  try {
+    const data = await Image.updateOne(
+      { _id: imageId },
+      { $set: { image: image, tag: tag, description: description } }
+    );
+    console.log("Update successful:", data);
+    res.redirect('/admin');
+  } catch (e) {
+    res.redirect('/admin')
+    console.error("Error occurred:", e);
+    res.status(500).send("Error updating image");
+  }
+});
+
+
+
+//Delete Image
+routes.get("/delete_image/:id", async (req, res) => {
+  console.log("Entered In Delete Method");
+  console.log(req.body);
+
+  const imageId = req.params.id;
+
+  try {
+    const data = await Image.deleteOne({ _id: imageId });
+    console.log(data);
+    res.redirect('/gallery');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    res.redirect("/gallery");
+  }
+});
+
+
+//Add Image
+routes.post("/add_image", async (req, resp) => {
+  console.log("Entered In Add Method");
+  console.log(req.body);
+
+  const imageId = req.params.id;
+  const { image, tag, description } = req.body;
+
+  console.log("Image ID:", imageId);
+  console.log("image:", image);
+  console.log("tag:", tag);
+  console.log("description:", description);
+
+  try{
+    const data = await Image.create({image : image, tag: tag, description : description} )
+    console.log(data);
+    resp.redirect('/admin');
+  } catch (e) {
+    console.log(e);
+    console.log("Error Occurred");
+    resp.redirect("/admin");
+  }
+
+});
+
+// ================= IMAGE UPDATION END ==================//
 
 
 

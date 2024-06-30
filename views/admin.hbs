@@ -4,377 +4,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
         integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="shortcut icon" href="static/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/favicon.png" type="image/x-icon">
 </head>
 
 <body class="bg">
 
-    {{>navbar data=details}}
+    <div class="container-fluid pt-5">
+        {{>navbar data=details}}
 
 
-    {{!-- ======================== NAVIGATION SECTION =================== --}}
-    <div class="container glass-main my-5 rounded-2 py-4">
-        <h3 class="text-center">Which Section Do You Want To Change?</h3>
-        <div class="d-flex mt-3 justify-content-around ">
-            <a href="#slider"
-                class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Slider</a>
-            <a href="#service"
-                class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Service</a>
-            <a href="#banner"
-                class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Banner</a>
-            <a href="#location"
-                class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Location</a>
+        {{!-- ======================== NAVIGATION SECTION =================== --}}
+        <div class="container glass-main my-5 rounded-2 py-4">
+            <h3 class="text-center">Which Section Do You Want To Change?</h3>
+            <div class="d-flex mt-3 justify-content-around ">
+                <a href="#slider"
+                    class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Slider</a>
+                <a href="#service"
+                    class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Service</a>
+                <a href="#banner"
+                    class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Banner</a>
+                <a href="#image"
+                    class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Location</a>
+                <a href="#location"
+                    class="text-decoration-none h-10 text-center py-2 w-24 bg-blue-400 rounded-3 bg-primary bg-gradient  text-dark ">Images</a>
+            </div>
         </div>
-    </div>
 
 
-    {{!-- ======================== SLIDER UPDATION SECTION START =================== --}}
-    <div class="container glass py-3 my-5" id="slider">
-        <h2 class="text-center">Slider</h2>
-        {{!-- <a href="/add_slider/{{this._id}}" class="btn btn-primary">Add</a> --}}
-        <div class="container d-flex flex-wrap justify-content-evenly">
+        {{!-- ======================== SLIDER UPDATION SECTION START =================== --}}
+        <div class="container glass py-3 my-5" id="slider">
+            <h2 class="text-center">Slider</h2>
+            {{!-- <a href="/add_slider/{{this._id}}" class="btn btn-primary">Add</a> --}}
+            <div class="container d-flex flex-wrap justify-content-evenly">
 
-            {{#each slider}}
-            <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-md-5 mx-1 my-3 d-flex justify-content-between">
+                {{#each slider}}
+                <div
+                    class="bg-light bg-gradient rounded-2 h-auto ps-4 col-lg-5 mx-1 my-3 d-flex justify-content-between">
 
-                <form action="/edit_slider/{{this._id}}" method="post">
+                    <form action="/edit_slider/{{this._id}}" method="post">
 
-                    <div class="d-flex h-auto justify-content-evenly flex-column ">
-                        <input type="hidden" name="id" value="{{this._id}}">
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Slider Image :- </td>
-                                    <td><input type="text" name="imgUrl" value="{{this.imgUrl}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Slider Title :- </td>
-                                    <td><input type="text" name="title" value="{{this.title}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Slider Subtitle :- </td>
-                                    {{!-- <td><input type="text" name="subtitle" value="{{this.subtitle}}"></td> --}}
-                                    <td><textarea name="subtitle" cols="30" id="">{{this.subtitle}}</textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="d-flex h-auto justify-content-evenly flex-column ">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Slider Image :- </td>
+                                        <td><input type="text" name="imgUrl" value="{{this.imgUrl}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slider Title :- </td>
+                                        <td><input type="text" name="title" value="{{this.title}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slider Subtitle :- </td>
+                                        {{!-- <td><input type="text" name="subtitle" value="{{this.subtitle}}"></td>
+                                        --}}
+                                        <td><textarea name="subtitle" cols="30" id="">{{this.subtitle}}</textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <div class="mb-3">
-                            <input type="submit" value="Update" class="btn btn-primary">
-                            <a href="/delete_slider/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            <div class="mb-3">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_slider/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div>
+
+                            {{!-- <input type="hidden" name="id" value="{{this._id}}">
+                            <input type="text" name="imgUrl" value="{{this.imgUrl}}">
+                            <input type="text" name="title" value="{{this.title}}">
+                            <input type="text" name="subtitle" value="{{this.subtitle}}">
+                            <div>
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_slider/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div> --}}
                         </div>
+                    </form>
 
-                        {{!-- <input type="hidden" name="id" value="{{this._id}}">
-                        <input type="text" name="imgUrl" value="{{this.imgUrl}}">
-                        <input type="text" name="title" value="{{this.title}}">
-                        <input type="text" name="subtitle" value="{{this.subtitle}}">
+                    {{!-- <div class="me-5">
+                        <a href="/delete_slider/{{this._id}}">Edit</a>
+                    </div> --}}
+
+                </div>
+                {{/each}}
+
+                <div class="col-md-5 bg-light bg-gradient rounded-2 h-auto w-auto ps-4 col-md-5 my-3">
+                    <form action="/add_slider" method="post">
+                        <div class="w-full">
+
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Slider Image :- </td>
+                                        <td><input type="text" name="imgUrl"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slider Title :- </td>
+                                        <td><input type="text" name="title"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slider Subtitle :- </td>
+                                        <td><textarea name="subtitle" cols="30" id=""></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            {{!-- Image Url :- <input type="text" name="imgUrl">
+                            Slider Title :- <input type="text" name="title">
+                            Slider Subtitle :- <input type="text" name="subtitle"> --}}
+                            <input type="submit" value="Add" class="btn mb-3 btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        {{!-- ======================== SLIDER UPDATION SECTION END =================== --}}
+
+
+
+
+        {{!-- ======================== SERVICES UPDATION SECTION START =================== --}}
+        <div class="container glass py-3 my-5" id="service">
+            <h2 class="text-center">Services</h2>
+
+            <div class="container d-flex flex-wrap justify-content-evenly">
+
+                {{#each service}}
+                <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-lg-5 my-3 d-flex justify-content-between">
+
+                    <form action="/edit_service/{{this._id}}" method="post">
+
+                        <div class="d-flex h-full justify-content-evenly flex-column ">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Service Icon :- </td>
+                                        <td><input type="text" name="icon" value="{{this.icon}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Title :- </td>
+                                        <td><input type="text" name="title" value="{{this.title}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Description :- </td>
+                                        {{!-- <td><input type="text" name="description" value="{{this.description}}">
+                                        </td>
+                                        --}}
+                                        <td><textarea name="description" cols="30" id="">{{this.description}}</textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service LinkText :- </td>
+                                        <td><input type="text" name="linkText" value="{{this.linkText}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Link :- </td>
+                                        <td><input type="text" name="link" value="{{this.link}}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="mb-3">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_service/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+                {{/each}}
+
+                <div class="col-md-5 bg-light bg-gradient rounded-2 h-auto ps-4 w-auto col-lg-5 my-3">
+                    <form action="/add_service" method="post">
                         <div>
-                            <input type="submit" value="Update" class="btn btn-primary">
-                            <a href="/delete_slider/{{this._id}}" class="btn btn-secondary">Delete</a>
-                        </div> --}}
-                    </div>
-                </form>
 
-                {{!-- <div class="me-5">
-                    <a href="/delete_slider/{{this._id}}">Edit</a>
-                </div> --}}
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Service Icon :- </td>
+                                        <td><input type="text" name="icon"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Title :- </td>
+                                        <td><input type="text" name="title"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Description :- </td>
+                                        {{!-- <td><input type="text" name="description"></td> --}}
+                                        <td><textarea name="description" cols="30" id=""></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service LinkText :- </td>
+                                        <td><input type="text" name="linkText"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Service Link :- </td>
+                                        <td><input type="text" name="link"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-            </div>
-            {{/each}}
-
-            <div class="col-md-5 bg-light bg-gradient rounded-2 h-auto ps-4 col-md-5 my-3">
-                <form action="/add_slider" method="post">
-                    <div class="w-full">
-
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Slider Image :- </td>
-                                    <td><input type="text" name="imgUrl"></td>
-                                </tr>
-                                <tr>
-                                    <td>Slider Title :- </td>
-                                    <td><input type="text" name="title"></td>
-                                </tr>
-                                <tr>
-                                    <td>Slider Subtitle :- </td>
-                                    <td><textarea name="subtitle" cols="30" id=""></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        {{!-- Image Url :- <input type="text" name="imgUrl">
-                        Slider Title :- <input type="text" name="title">
-                        Slider Subtitle :- <input type="text" name="subtitle"> --}}
-                        <input type="submit" value="Add" class="btn mb-3 btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    {{!-- ======================== SLIDER UPDATION SECTION END =================== --}}
-
-
-
-
-    {{!-- ======================== SERVICES UPDATION SECTION START =================== --}}
-    <div class="container glass py-3 my-5" id="service">
-        <h2 class="text-center">Services</h2>
-
-        <div class="container d-flex flex-wrap justify-content-evenly">
-
-            {{#each service}}
-            <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-md-5 my-3 d-flex justify-content-between">
-
-                <form action="/edit_service/{{this._id}}" method="post">
-
-                    <div class="d-flex h-full justify-content-evenly flex-column ">
-                        <input type="hidden" name="id" value="{{this._id}}">
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Service Icon :- </td>
-                                    <td><input type="text" name="icon" value="{{this.icon}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Title :- </td>
-                                    <td><input type="text" name="title" value="{{this.title}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Description :- </td>
-                                    {{!-- <td><input type="text" name="description" value="{{this.description}}"></td>
-                                    --}}
-                                    <td><textarea name="description" cols="30" id="">{{this.description}}</textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Service LinkText :- </td>
-                                    <td><input type="text" name="linkText" value="{{this.linkText}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Link :- </td>
-                                    <td><input type="text" name="link" value="{{this.link}}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="mb-3">
-                            <input type="submit" value="Update" class="btn btn-primary">
-                            <a href="/delete_service/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            <input type="submit" value="Add" class="btn mb-3 btn-primary">
                         </div>
-
-                    </div>
-                </form>
-
+                    </form>
+                </div>
             </div>
-            {{/each}}
 
-            <div class="col-md-5 bg-light bg-gradient rounded-2 h-auto ps-4 col-md-5 my-3">
-                <form action="/add_service" method="post">
-                    <div>
-
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Service Icon :- </td>
-                                    <td><input type="text" name="icon"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Title :- </td>
-                                    <td><input type="text" name="title"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Description :- </td>
-                                    {{!-- <td><input type="text" name="description"></td> --}}
-                                    <td><textarea name="description" cols="30" id=""></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td>Service LinkText :- </td>
-                                    <td><input type="text" name="linkText"></td>
-                                </tr>
-                                <tr>
-                                    <td>Service Link :- </td>
-                                    <td><input type="text" name="link"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <input type="submit" value="Add" class="btn mb-3 btn-primary">
-                    </div>
-                </form>
-            </div>
         </div>
-
-    </div>
-    {{!-- ======================== SERVICES UPDATION SECTION END =================== --}}
+        {{!-- ======================== SERVICES UPDATION SECTION END =================== --}}
 
 
 
 
-    {{!-- ======================== BANNER UPDATION SECTION START =================== --}}
-    <div class="container glass py-3 my-5" id="banner">
-        <h2 class="text-center">Banner</h2>
+        {{!-- ======================== BANNER UPDATION SECTION START =================== --}}
+        <div class="container glass py-3 my-5" id="banner">
+            <h2 class="text-center">Banner</h2>
 
-        <div class="container d-flex flex-wrap justify-content-evenly">
+            <div class="container d-flex flex-wrap justify-content-evenly">
 
-            {{#each banner}}
-            <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-md-5 my-3 d-flex justify-content-between">
+                {{#each banner}}
+                <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-lg-5 w-auto my-3 d-flex justify-content-between">
 
-                <form action="/edit_banner/{{this._id}}" method="post">
+                    <form action="/edit_banner/{{this._id}}" method="post">
 
-                    <div class="d-flex h-full justify-content-evenly flex-column ">
-                        <input type="hidden" name="id" value="{{this._id}}">
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Banner Image :- </td>
-                                    <td><input type="text" name="imgUrl" value="{{this.imgUrl}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Banner Title :- </td>
-                                    <td><input type="text" name="title" value="{{this.title}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>Banner Subtitle :- </td>
-                                    {{!-- <td><input type="text" name="subtitle" value="{{this.subtitle}}"></td> --}}
-                                    <td><textarea name="subtitle" cols="30" id="">{{this.subtitle}}</textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="d-flex h-full justify-content-evenly flex-column ">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Banner Image :- </td>
+                                        <td><input type="text" name="imgUrl" value="{{this.imgUrl}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Banner Title :- </td>
+                                        <td><input type="text" name="title" value="{{this.title}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Banner Subtitle :- </td>
+                                        {{!-- <td><input type="text" name="subtitle" value="{{this.subtitle}}"></td>
+                                        --}}
+                                        <td><textarea name="subtitle" cols="30" id="">{{this.subtitle}}</textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <div class="mb-3">
-                            <input type="submit" value="Update" class="btn btn-primary">
-                            <a href="/delete_banner/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            <div class="mb-3">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_banner/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div>
+
                         </div>
+                    </form>
 
-                    </div>
-                </form>
+                </div>
+                {{/each}}
 
-            </div>
-            {{/each}}
+                <div class="col-md-5  bg-light bg-gradient rounded-2 w-auto h-auto ps-4 col-md-5 my-3">
+                    <form action="/add_banner" method="post">
+                        <div>
 
-            <div class="col-md-5  bg-light bg-gradient rounded-2 h-56 ps-4 col-md-5 my-3">
-                <form action="/add_banner" method="post">
-                    <div>
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Banner Image :- </td>
+                                        <td><input type="text" name="imgUrl"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Banner Title :- </td>
+                                        <td><input type="text" name="title"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Banner Subtitle :- </td>
+                                        {{!-- <td><input type="text" name="subtitle"></td> --}}
+                                        <td><textarea name="subtitle" cols="30" id=""></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>Banner Image :- </td>
-                                    <td><input type="text" name="imgUrl"></td>
-                                </tr>
-                                <tr>
-                                    <td>Banner Title :- </td>
-                                    <td><input type="text" name="title"></td>
-                                </tr>
-                                <tr>
-                                    <td>Banner Subtitle :- </td>
-                                    {{!-- <td><input type="text" name="subtitle"></td> --}}
-                                    <td><textarea name="subtitle" cols="30" id=""></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <input type="submit" value="Add" class="btn btn-primary">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </div>
-    {{!-- ======================== BANNER UPDATION SECTION END =================== --}}
-
-
-
-
-
-    {{!-- ======================== LOCATION UPDATION SECTION START =================== --}}
-    <div class="container glass py-3 my-5" id="location">
-        <h2 class="text-center">Location</h2>
-
-        <div class="container d-flex flex-wrap justify-content-evenly">
-
-            {{#each location}}
-            <div class="bg-light bg-gradient rounded-2 h-56 ps-4 col-md-5 my-3 d-flex justify-content-between">
-
-                <form action="/edit_location/{{this._id}}" method="post">
-
-                    <div class="d-flex h-full justify-content-evenly flex-column ">
-                        <input type="hidden" name="id" value="{{this._id}}">
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>City :- </td>
-                                    <td><input type="text" name="city" value="{{this.city}}"></td>
-                                </tr>
-                                <tr>
-                                    <td>location :- </td>
-                                    {{!-- <td><input type="text" name="location" value="{{this.location}}"></td> --}}
-                                    <td><textarea name="location" cols="30" id="">{{this.location}}</textarea></td>
-                                </tr>
-                                <tr>
-                                    <td>optional :- </td>
-                                    <td><textarea name="optional" cols="30" id="">{{this.optional}}</textarea></td>
-                                    {{!-- <td><input type="text" name="optional" value="{{this.optional}}"></td> --}}
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="mb-3">
-                            <input type="submit" value="Update" class="btn btn-primary">
-                            <a href="/delete_location/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            <input type="submit" value="Add" class="btn btn-primary">
                         </div>
-
-                    </div>
-                </form>
-
+                    </form>
+                </div>
             </div>
-            {{/each}}
 
-            <div class="col-md-5  bg-light bg-gradient rounded-2 h-56 ps-4 col-md-5 my-3">
-                <form action="/add_location" method="post">
-                    <div>
+        </div>
+        {{!-- ======================== BANNER UPDATION SECTION END =================== --}}
 
-                        <table class="table mt-3">
-                            <tbody>
-                                <tr>
-                                    <td>City :- </td>
-                                    <td><input type="text" name="city"></td>
-                                </tr>
-                                <tr>
-                                    <td>Location :- </td>
-                                    {{!-- <td><input type="text" name="location"></td> --}}
-                                    <td><textarea name="location" cols="30" id=""></textarea></td>
 
-                                </tr>
-                                <tr>
-                                    <td>Optional :- </td>
-                                    {{!-- <td><input type="text" name="optional"></td> --}}
-                                    <td><textarea name="optional" cols="30" id=""></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
 
-                        <input type="submit" value="Add" class="btn btn-primary">
-                    </div>
-                </form>
+
+
+        {{!-- ======================== LOCATION UPDATION SECTION START =================== --}}
+        <div class="container glass py-3 my-5" id="image">
+            <h2 class="text-center">Location</h2>
+
+            <div class="container d-flex flex-wrap justify-content-evenly">
+
+                {{#each location}}
+                <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-lg-5 my-3 d-flex justify-content-between">
+
+                    <form action="/edit_location/{{this._id}}" method="post">
+
+                        <div class="d-flex h-full justify-content-evenly flex-column ">
+                            <input type="hidden" name="id" value="{{this._id}}">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>City :- </td>
+                                        <td><input type="text" name="city" value="{{this.city}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>location :- </td>
+                                        {{!-- <td><input type="text" name="location" value="{{this.location}}"></td>
+                                        --}}
+                                        <td><textarea name="location" cols="30" id="">{{this.location}}</textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>optional :- </td>
+                                        <td><textarea name="optional" cols="30" id="">{{this.optional}}</textarea></td>
+                                        {{!-- <td><input type="text" name="optional" value="{{this.optional}}"></td>
+                                        --}}
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="mb-3">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_location/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+                {{/each}}
+
+                <div class="col-md-5  bg-light bg-gradient rounded-2 h-auto w-auto ps-4 col-md-5 my-3">
+                    <form action="/add_location" method="post">
+                        <div>
+
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>City :- </td>
+                                        <td><input type="text" name="city"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location :- </td>
+                                        {{!-- <td><input type="text" name="location"></td> --}}
+                                        <td><textarea name="location" cols="30" id=""></textarea></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Optional :- </td>
+                                        {{!-- <td><input type="text" name="optional"></td> --}}
+                                        <td><textarea name="optional" cols="30" id=""></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input type="submit" value="Add" class="btn mb-3 btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        {{!-- ======================== LOCATION UPDATION SECTION END =================== --}}
+
+
+
+
+
+        {{!-- ======================== IMAGE UPDATION SECTION START =================== --}}
+        <div class="container glass py-3 my-5" id="location">
+            <h2 class="text-center">Images</h2>
+
+            <div class="container d-flex flex-wrap justify-content-evenly">
+                {{#each image}}
+                <div class="bg-light bg-gradient rounded-2 h-auto ps-4 col-lg-5 my-3 d-flex justify-content-between">
+                    <form action="/edit_image/{{this._id}}" method="post">
+                        <div class="d-flex h-full justify-content-evenly flex-column">
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Image :- </td>
+                                        <td><input type="text" name="image" value="{{this.image}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tag :- </td>
+                                        <td><input type="text" name="tag" value="{{this.tag}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description :- </td>
+                                        <td><textarea name="description" cols="30">{{this.description}}</textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="mb-3">
+                                <input type="submit" value="Update" class="btn btn-primary">
+                                <a href="/delete_image/{{this._id}}" class="btn btn-secondary">Delete</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {{/each}}
+                <div class="col-md-5 bg-light bg-gradient rounded-2 h-auto w-auto ps-4 col-md-5 my-3">
+                    <form action="/add_image" method="post">
+                        <div>
+                            <table class="table mt-3">
+                                <tbody>
+                                    <tr>
+                                        <td>Image :- </td>
+                                        <td><input type="text" name="image"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tag :- </td>
+                                        <td><input type="text" name="tag"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description :- </td>
+                                        <td><textarea name="description" cols="30"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="submit" value="Add" class="btn mb-3 btn-primary">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
+        {{!-- ======================== IMAGE UPDATION SECTION END =================== --}}
+
+
+
+
+
     </div>
-    {{!-- ======================== LOCATION UPDATION SECTION END =================== --}}
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
