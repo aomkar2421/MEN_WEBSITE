@@ -75,20 +75,56 @@ routes.get("/admin", async (req, resp) => {
 
 
 // Contact Us Form
-routes.post("/process-form", async (req, resp) => {
-  console.log("form submitted succesfully");
-  console.log(req.body);
+routes.post("/process-form", async (req, res) => {
+  const { email, phone, subject, query } = req.body;
+  console.log(email);
+  console.log(phone);
+  console.log(subject);
+  console.log(query);
 
   try {
-    const data = await Contact.create(req.body);
-    console.log(data);
-    resp.redirect("/");
+    const data = await Contact.create({email : email, phone : phone, subject : subject, query : query});
+    console.log("Form submitted successfully", data);
+    res.redirect("/?success=true");
   } catch (e) {
-    console.log(e);
-    console.log("Error Occured");
-    resp.redirect("/");
+    console.log("Error Occurred", e);
+    res.status(500).render('error', { message: "An error occurred while processing your request. Please try again later." });
   }
 });
+
+
+// routes.get("/delete_location/:id", async (req, res) => {
+//   console.log("Entered In Delete Method");
+//   console.log(req.body);
+
+//   const locationId = req.params.id;
+
+//   try {
+//     const data = await Location.deleteOne({ _id: locationId });
+//     console.log(data);
+//     res.redirect('/');
+//   } catch (e) {
+//     console.log(e);
+//     console.log("Error Occurred");
+//     res.redirect("/");
+//   }
+// });
+
+//Resolved query
+routes.get('/resolved_query/:id', async (req, res) => {
+  console.log("Entered the method to resolve query");
+  const queryId = req.params.id;
+
+  try {
+    const data = await Contact.deleteOne({ _id: queryId });
+    console.log(`Query with ID ${queryId} resolved and deleted successfully`, data);
+    res.redirect("/"); // Redirect to the home page or any other page
+  } catch (e) {
+    console.error("Error occurred while resolving query", e);
+    res.redirect("/queries"); // Handle the error by redirecting
+  }
+});
+
 
 
 // ================= SLIDER UPDATION START ==================//
