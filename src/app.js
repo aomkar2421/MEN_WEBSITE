@@ -32,7 +32,10 @@ hbs.registerHelper('even', function (index) {
 });  
 
 //dbconnection
-mongoose.connect("mongodb://127.0.0.1:27017/servicehub")
+// const uri = "mongodb://127.0.0.1:27017/servicehub";
+const uri = "mongodb+srv://omkar:AOmkar1651@cluster0.xb6x4xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+mongoose.connect(uri);
 // Detail.create({
 //     brandName : "ServiceHub",
 //     brandUrl : "static/images/logo.png",
