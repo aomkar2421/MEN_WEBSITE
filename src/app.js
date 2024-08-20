@@ -33,7 +33,7 @@ hbs.registerHelper('even', function (index) {
 
 //dbconnection
 // const uri = "mongodb://127.0.0.1:27017/servicehub";
-// const uri = "mongodb+srv://omkar:AOmkar1651@cluster0.xb6x4xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// // const uri = "mongodb+srv://omkar:AOmkar1651@cluster0.xb6x4xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const uri = "mongodb+srv://omkar:AOmkar1651@cluster0.xb6x4xn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 mongoose.connect(uri);
