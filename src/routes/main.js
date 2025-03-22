@@ -42,7 +42,7 @@ routes.get("/", async (req, resp) => {
 routes.get("/gallery", async (req, resp) => {
   let details = await Detail.findOne({ _id: "661b7e629303ab08bdf2d12d" });
   let image = await Image.find({ tag: "gallery" });
-  let product = await Image.find({ tag: "products" });
+  let product = await Image.find({ tag: "product" });
   resp.render("gallery", {
     details: details,
     image : image,
