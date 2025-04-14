@@ -13,21 +13,24 @@ const app = express()
 require('dotenv').config();
 
 const hostname = '0.0.0.0';
-const port = 4500;
+const port = process.env.PORT || 3000;
 
 //routes and static files
 app.use(bodyParser.urlencoded({
     extended : true
 }))
 
+const path = require('path');
+
 app.use('',routes)
-app.use('/static',express.static('public'))
+// app.use('/static',express.static('public'))
+app.use('/static', express.static(path.join(__dirname, "../public")));
 
-
-//view engine
 app.set("view engine" , 'hbs')
-app.set("views","views")
-hbs.registerPartials("views/partials")
+// app.set("views","views")
+// hbs.registerPartials("views/partials")
+app.set("views", path.join(__dirname, "../views"));
+hbs.registerPartials(path.join(__dirname, "../views/partials"));
 
 hbs.registerHelper('even', function (index) {
     return index % 2 === 0;
